@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: IranSans;
+  src: url("./fonts/IRANSansWeb_Medium.822e3858342b982b.woff2") format("woff2");
+}
+
+* {
+  box-sizing: border-box;
+  font-family: IranSans;
+}
+
+@layer components {
+  .animatedBorder {
+    @apply before:absolute before:bottom-4 before:block before:h-[2px] before:w-full
+    before:origin-right before:scale-x-0 before:rounded-bl before:bg-blue-500 before:transition-transform before:duration-300 before:content-[''] before:hover:scale-x-100;
+  }
+}
+
+.gradientTitle {
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.66),
+    rgba(0, 0, 0, 0.5) 66%,
+    transparent
+  );
+}
