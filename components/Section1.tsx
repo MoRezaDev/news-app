@@ -13,7 +13,7 @@ const Section1 = () => {
           />
         </div>
       </section>
-      <div className="gradientTitle relative -top-[300px] h-56 w-full text-white ">
+      <div className="gradientTitle relative -top-[450px]  h-56 w-full text-white sm:-top-[400px] md:-top-[300px] ">
         <div className="mr-10 w-4/5  py-3 md:mr-28 lg:w-2/5">
           <h1 className="text-xl leading-[60px] md:text-3xl">
             ویرجیل فن دایک: حذف برابر آرژانتین در جام جهانی باعث انگیزه گرفتن من

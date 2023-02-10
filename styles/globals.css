@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @font-face {
+  font-family: "goal-icon";
+  src: url("./fonts/icomoon.woff2") format("woff2");
+}
+
+@font-face {
   font-family: IranSans;
   src: url("./fonts/IRANSansWeb_Medium.822e3858342b982b.woff2") format("woff2");
 }
@@ -17,6 +22,25 @@
     @apply before:absolute before:bottom-4 before:block before:h-[2px] before:w-full
     before:origin-right before:scale-x-0 before:rounded-bl before:bg-blue-500 before:transition-transform before:duration-300 before:content-[''] before:hover:scale-x-100;
   }
+  .BurgerMenu {
+    @apply absolute left-0;
+    @apply before:mb-[6px] before:block before:h-[2px] before:w-[20px] before:bg-white;
+    @apply after:mt-[4px] after:block after:h-[2px] after:w-[20px] after:bg-white;
+  }
+  .active {
+    @apply before:origin-left before:rotate-45 before:transition-transform before:duration-200 before:ease-linear;
+    @apply before:ease-linear after:origin-left after:-rotate-45 after:transition-transform  after:duration-200;
+  }
+}
+
+.marginAnimated::before {
+  transition: margin 0.2ms linear;
+  margin-bottom: 0;
+}
+
+.marginAnimated::after {
+  transition: margin 0.2ms linear;
+  margin-t: 0;
 }
 
 .gradientTitle {
@@ -26,4 +50,16 @@
     rgba(0, 0, 0, 0.5) 66%,
     transparent
   );
+}
+
+.animatedLastNews {
+  animation: news 30s linear infinite;
+}
+@keyframes news {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(100% + 80px));
+  }
 }

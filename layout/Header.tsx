@@ -4,6 +4,9 @@ import { useState } from "react";
 
 export default function Header() {
   const [showPremierLeaugeToggle, setShowPremierLeaugeToggle] = useState(false);
+  const [showSubPremierLeaugeToggle, setShowSubPremierLeaugeToggle] =
+    useState(false);
+  const [isBurgerMenuOpened, setIsBurgerMenuOpened] = useState(false);
   return (
     <header className="fixed top-0 z-20  h-[96px]  w-full  bg-black text-white">
       <div className="relative  mx-auto flex  items-center justify-between  px-5 lg:container lg:px-3 ">
@@ -63,6 +66,63 @@ export default function Header() {
             </li>
           </ul>
         </div>
+        <div className="relative flex items-center gap-10 lg:hidden">
+          <Link
+            className="relative  ml-14 flex text-[14px] before:ml-[8px] before:h-[20px]  before:w-[20px] before:font-live before:text-xl before:leading-[19px] before:text-[#73c3ce] before:content-['\e922']"
+            href="/"
+          >
+            نتایج زنده
+          </Link>
+          <button
+            onClick={() => setIsBurgerMenuOpened(!isBurgerMenuOpened)}
+            className={`BurgerMenu duration-200 before:transition-all before:duration-200 after:transition-all after:duration-200 ${
+              isBurgerMenuOpened && "active"
+            }`}
+          >
+            <span
+              className={`${
+                isBurgerMenuOpened &&
+                "translate-x-[50%] opacity-0 transition-all"
+              } block h-[2px] w-[20px] rounded-lg bg-white transition-all duration-200 `}
+            ></span>
+          </button>
+        </div>
+      </div>
+
+      <div
+        className={`${
+          isBurgerMenuOpened
+            ? "h-screen border-orange-400 transition-all duration-300 ease-in-out"
+            : "h-0"
+        } top-90px fixed w-full   border-t-2 bg-[#292929]  transition-all duration-300 ease-in-out`}
+      >
+        {isBurgerMenuOpened && (
+          <div className="flex w-full flex-col gap-10 px-6 py-12 text-xl">
+            <Link href="/">نتایج</Link>
+            <Link href="/">اخبار داغ</Link>
+            <Link href="/">نقل و انتقالات</Link>
+            <div
+              onClick={() =>
+                setShowSubPremierLeaugeToggle(!showSubPremierLeaugeToggle)
+              }
+              className="relative flex w-full cursor-pointer items-center justify-between"
+            >
+              <span>لیگ جزیره</span>
+              <img src="/plus.png" />
+              <div
+                className={`${
+                  showSubPremierLeaugeToggle
+                    ? "h-36 transition-all duration-400 ease-linear"
+                    : "h-0 transition-all duration-400 ease-linear"
+                } absolute top-14 mx-auto flex w-[95%] flex-col gap-4 overflow-hidden px-4 text-[16px] transition-all duration-400 ease-linear `}
+              >
+                <p className="border-b border-b-gray-500/50">اخبار منتخب</p>
+                <p className="border-b border-b-gray-500/50">جدول لیگ</p>
+                <p className="border-b border-b-gray-500/50">پیش بینی ها</p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </header>
   );
