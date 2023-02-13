@@ -94,7 +94,7 @@ export default function Header() {
           isBurgerMenuOpened
             ? "h-screen border-orange-400 transition-all duration-300 ease-in-out"
             : "h-0"
-        } top-90px fixed w-full   border-t-2 bg-[#292929]  transition-all duration-300 ease-in-out`}
+        } top-90px fixed block   w-full border-t-2  bg-[#292929] transition-all duration-300 ease-in-out lg:hidden`}
       >
         {isBurgerMenuOpened && (
           <div className="flex w-full flex-col gap-10 px-6 py-12 text-xl">
@@ -112,9 +112,9 @@ export default function Header() {
               <div
                 className={`${
                   showSubPremierLeaugeToggle
-                    ? "h-36 transition-all duration-400 ease-linear"
-                    : "h-0 transition-all duration-400 ease-linear"
-                } absolute top-14 mx-auto flex w-[95%] flex-col gap-4 overflow-hidden px-4 text-[16px] transition-all duration-400 ease-linear `}
+                    ? "duration-400 h-36 transition-all ease-linear"
+                    : "duration-400 h-0 transition-all ease-linear"
+                } duration-400 absolute top-14 mx-auto flex w-[95%] flex-col gap-4 overflow-hidden px-4 text-[16px] transition-all ease-linear `}
               >
                 <p className="border-b border-b-gray-500/50">اخبار منتخب</p>
                 <p className="border-b border-b-gray-500/50">جدول لیگ</p>
