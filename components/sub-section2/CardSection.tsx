@@ -44,13 +44,39 @@ const CardSection = ({ type }: CardSectionProps) => {
   if (type === "mediumCard")
     return (
       <div className="flex flex-col gap-2 overflow-hidden rounded-md bg-[#333] text-white ">
-        <img src="/neymar-small-webp.webp" className=" w-[full]  lg:w-full" />
+        <img src="/neymar-small-webp.webp" className="lg:w-full" />
         <div className="w-full p-4 md:text-xl">
           <p className="mb-6 w-[65%] text-[16px] leading-6">
             کلاهبرداری با سو استفاده اسم نیمار در واتس‌اپ
           </p>
           <div className="flex items-center gap-10">
             <div className="flex items-center gap-2">
+              <CiClock2 className="font-bold" size={20} />
+              <span className="text-sm">5 ساعت پیش</span>
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <VscComment size={20} />
+                <span className="text-sm">250</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  if (type === "smallCard")
+    return (
+      <div className="flex h-[150px] justify-between  gap-2 overflow-hidden rounded-md bg-[#333] text-white ">
+        <img
+          src="/neymar-small-webp.webp"
+          className="h-full w-[40%] object-cover  lg:w-full"
+        />
+        <div className="flex w-full flex-col items-start  justify-between p-4 md:text-xl">
+          <p className="mb-6 w-full  text-[16px] leading-6">
+            کلاهبرداری با سو استفاده اسم نیمار در واتس‌اپ
+          </p>
+          <div className="flex w-full items-center justify-between">
+            <div className="hidden items-center gap-2 xs:flex">
               <CiClock2 className="font-bold" size={20} />
               <span className="text-sm">5 ساعت پیش</span>
             </div>

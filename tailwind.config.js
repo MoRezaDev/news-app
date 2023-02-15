@@ -10,7 +10,11 @@ module.exports = {
     fontFamily: {
       live: ["goal-icon"],
     },
-    extend: {},
+    extend: {
+      screens: {
+        xs: "500px",
+      },
+    },
   },
   plugins: [],
 };
