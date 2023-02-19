@@ -11,7 +11,9 @@ export default function Header() {
     <header className="fixed top-0 z-20  h-[96px]  w-full  bg-black text-white">
       <div className="relative  mx-auto flex  items-center justify-between  px-5 lg:container lg:px-3 ">
         <div className="flex h-[96px] items-center gap-12">
-          <Image src={"/logo.png"} alt="logo" width={60} height={50} />
+          <Link href="/" className="hover:opacity-80 transition">
+            <Image src={"/logo.png"} alt="logo" width={60} height={50} />
+          </Link>
           <ul className="hidden h-[96px] items-center gap-8 lg:flex">
             <li className="animatedBorder relative h-[100%] ">
               <Link className="flex h-[100%] items-center" href="/">

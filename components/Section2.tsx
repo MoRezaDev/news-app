@@ -2,7 +2,17 @@ import React from "react";
 import CardSection from "./sub-section2/CardSection";
 import Slider from "./sub-section2/Slider";
 
-const Section2 = () => {
+interface Props {
+  data: {
+    id: string | number;
+    title: string;
+    description: string;
+    coverPhoto: { url: string };
+    slug: string;
+  }[];
+}
+
+const Section2 = ({ data }: Props) => {
   return (
     <div className="z-10 -mt-[300px] bg-[#292929]">
       <div className="flex h-16 w-full items-center overflow-hidden bg-gradient-to-t from-orange-500 to-orange-400 p-2 ">
@@ -35,16 +45,18 @@ const Section2 = () => {
         <section className="mx-auto  w-full  md:w-[98%] lg:w-[1024px]">
           <div className="grid gap-4 rounded-md md:gap-4 lg:grid-cols-3">
             <div className="col-span-2 lg:h-[650px]">
-              <CardSection type="largeCard" />
+              <CardSection type="largeCard" data={data[1]} />
             </div>
             <div className="hidden flex-col gap-4  md:col-span-2 md:flex-row md:justify-between lg:col-span-1 lg:flex lg:h-[650px] lg:flex-col">
-              <CardSection type="mediumCard" />
-              <CardSection type="mediumCard" />
+              {data.slice(2, 4).map((data) => (
+                <CardSection type="mediumCard" data={data} />
+              ))}
             </div>
             <div className="col-span-2 grid w-full gap-4 md:grid-cols-2 lg:hidden">
               <div className="flex flex-col gap-4">
-                <CardSection type="mediumCard" />
-                <CardSection type="mediumCard" />
+                {data.slice(2, 4).map((data) => (
+                  <CardSection type="mediumCard" data={data} />
+                ))}
               </div>
               <div className="relative flex h-full w-full flex-col items-center gap-4 bg-transparent ">
                 <div className="sticky top-32 hidden md:block">
@@ -56,18 +68,19 @@ const Section2 = () => {
           </div>
           <div className="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             <div className="col-span-2 hidden grid-cols-2 gap-4 md:grid">
-              <CardSection type="mediumCard" />
-              <CardSection type="mediumCard" />
-              <CardSection type="mediumCard" />
-              <CardSection type="mediumCard" />
+              {data.slice(1, 5).map((data) => (
+                <CardSection type="mediumCard" data={data} />
+              ))}
             </div>
             <div className="col-span-2 grid grid-cols-1 gap-4 md:hidden ">
-              <CardSection type="smallCard" />
-              <CardSection type="smallCard" />
-              <CardSection type="smallCard" />
+              {data.slice(2, 5).map((data) => (
+                <CardSection type="smallCard" data={data} />
+              ))}
             </div>
             <div className="hidden flex-col items-center p-4 lg:flex">
-              <div className="h-[300px] w-[250px] border" />
+              <div className="h-[500px] w-[270px] border rounded-md border-slate-400">
+                <p className="text-slate-300 text-xl my-4 text-center ">تبلیغات</p>
+              </div>
             </div>
           </div>
         </section>
