@@ -41,3 +41,23 @@ export const getOneNews = gql`
     }
   }
 `;
+
+export const getLiveResultByDay = gql`
+  query getLiveResultByDay($day: String!) {
+    liveResults(where: { day: $day }) {
+      guestName
+      guestResult
+      day
+      hostName
+      hostResult
+      state
+      tournoment
+      hostLogo {
+        url
+      }
+      guestLogo {
+        url
+      }
+    }
+  }
+`;

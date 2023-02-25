@@ -11,14 +11,14 @@ export default function Header() {
     <header className="fixed top-0 z-20  h-[96px]  w-full  bg-black text-white">
       <div className="relative  mx-auto flex  items-center justify-between  px-5 lg:container lg:px-3 ">
         <div className="flex h-[96px] items-center gap-12">
-          <Link href="/" className="hover:opacity-80 transition">
+          <Link href="/" className="transition hover:opacity-80">
             <Image src={"/logo.png"} alt="logo" width={60} height={50} />
           </Link>
           <ul className="hidden h-[96px] items-center gap-8 lg:flex">
             <li className="animatedBorder relative h-[100%] ">
-              <Link className="flex h-[100%] items-center" href="/">
+              <a className="flex h-[100%] items-center" href="/live">
                 <span>نتایج زنده</span>
-              </Link>
+              </a>
             </li>
             <li className="animatedBorder relative h-[100%]">
               <Link className="flex h-[100%] items-center" href="/">
@@ -69,12 +69,12 @@ export default function Header() {
           </ul>
         </div>
         <div className="relative flex items-center gap-10 lg:hidden">
-          <Link
+          <a
             className="relative  ml-14 flex text-[14px] before:ml-[8px] before:h-[20px]  before:w-[20px] before:font-live before:text-xl before:leading-[19px] before:text-[#73c3ce] before:content-['\e922']"
-            href="/"
+            href="/live"
           >
             نتایج زنده
-          </Link>
+          </a>
           <button
             onClick={() => setIsBurgerMenuOpened(!isBurgerMenuOpened)}
             className={`BurgerMenu duration-200 before:transition-all before:duration-200 after:transition-all after:duration-200 ${
