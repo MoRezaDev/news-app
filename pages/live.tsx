@@ -4,7 +4,7 @@ import type { GetServerSideProps } from "next";
 import { getDays, getDays7 } from "../utils/functions";
 
 import client from "../graphql/apollo-client";
-import { getLiveResultByDay, getLiveResultByDay2 } from "../graphql/query";
+import { getLiveResultByDay } from "../graphql/query";
 import LiveCard from "../components/LiveCard";
 
 const fiveDays = getDays();
