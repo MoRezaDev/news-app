@@ -4,7 +4,7 @@ import type { GetServerSideProps } from "next";
 import { getDays, getDays7 } from "../utils/functions";
 
 import client from "../graphql/apollo-client";
-import { getLiveResultByDay } from "../graphql/query";
+import { getLiveResultByDay, getLiveResultByDay2 } from "../graphql/query";
 import LiveCard from "../components/LiveCard";
 
 const fiveDays = getDays();
@@ -31,17 +31,14 @@ type DataType = {
 
 interface LiveProps {
   data: DataType;
-  loading: boolean;
+  loading?: boolean;
 }
 
-const live = ({ data, loading }: LiveProps) => {
+const live = ({ data }: LiveProps) => {
   const [selectedDay, setSelectedDay] = useState<string>(today);
+  const [searchValue, setSearchValue] = useState<string>("");
 
-  const arrangedData = (data: {
-    liveResults: {
-      tournoment: string;
-    }[];
-  }) => {
+  const arrangedData = (data: DataType) => {
     let filteredArray: string[] = [];
     if (data) {
       const { liveResults } = data;
@@ -63,7 +60,7 @@ const live = ({ data, loading }: LiveProps) => {
     Router.push(`/live?day=${selectedDay}`);
   }, [selectedDay]);
   // console.log(fiveDays);
-  console.log(data);
+  console.log(sevenDays);
   console.log(filteredArray);
   return (
     <div className="mt-[90px] min-h-screen bg-[#292929]">
@@ -74,10 +71,14 @@ const live = ({ data, loading }: LiveProps) => {
         <h1>نتایج زنده ، روزهای هفته ، جستجو</h1>
         <div className="flex items-center gap-2">
           <div className="relative flex  min-w-fit  rounded-md bg-[#333] px-3 py-2 text-[14px] before:ml-[8px] before:h-[20px]  before:w-[20px] before:font-live before:text-xl before:leading-[19px] before:text-[#73c3ce] before:content-['\e922']">
-            <p className="relative bottom-[1px]">زنده (22)</p>
+            <p className="relative bottom-[1px]">
+              زنده ({data.liveResults.length})
+            </p>
           </div>
           <div className="flex-shrink flex-grow rounded-md bg-[#333] p-2">
             <input
+              onChange={(e) => setSearchValue(e.target.value)}
+              value={searchValue}
               className="w-full bg-transparent outline-none placeholder:text-sm placeholder:text-[#828282]"
               type="text"
               placeholder="جستجوی تیم"
@@ -114,12 +115,36 @@ const live = ({ data, loading }: LiveProps) => {
         </div>
       </div>
       <div className="overflow-hidden">
-        {filteredArray.map((leauge, idx) => {
-          const filteredData = data.liveResults.filter(
-            (item) => item.tournoment === leauge
-          );
-          return <LiveCard key={idx} data={filteredData} />;
-        })}
+        {searchValue.length === 0
+          ? filteredArray.map((leauge, idx) => {
+              const filteredData = data.liveResults.filter(
+                (item) => item.tournoment === leauge
+              );
+              return <LiveCard key={idx} data={filteredData} />;
+            })
+          : filteredArray.map((leauge, idx) => {
+              const filteredData = data.liveResults.filter(
+                (item) => item.tournoment === leauge
+              );
+              const searchedData = filteredData.filter(
+                (filData) =>
+                  filData.guestName
+                    .toLocaleLowerCase()
+                    .includes(searchValue.toLowerCase()) ||
+                  filData.hostName
+                    .toLowerCase()
+                    .includes(searchValue.toLowerCase())
+              );
+              if (searchedData) {
+                return <LiveCard key={idx} data={searchedData} />;
+              } else {
+                return (
+                  <div>
+                    <h1>اطلاعات یافت نشد</h1>
+                  </div>
+                );
+              }
+            })}
       </div>
     </div>
   );
@@ -128,18 +153,27 @@ const live = ({ data, loading }: LiveProps) => {
 export default live;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  //the actualDay is getting today string from url parameter query but my api server is limited
+  //so i have to make it all the days set too پنج شنبه
+  //but i leave the code for real world bellow here
   const params = context.query;
   const { day } = params;
   const actualDay = day || today;
+  const selectedDays =
+    actualDay === "پنج‌شنبه" || actualDay === "دوشنبه" || actualDay === "جمعه"
+      ? "پنج‌شنبه"
+      : "";
+
   const { data, loading } = await client.query({
     query: getLiveResultByDay,
-    variables: { day: actualDay },
+    variables: { day: selectedDays },
   });
+
+  console.log();
   console.log({ actualDay });
   return {
     props: {
       data,
-      loading,
     },
   };
 };

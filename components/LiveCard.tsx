@@ -20,6 +20,7 @@ type LiveCardProps = {
 };
 
 const LiveCard = ({ data }: LiveCardProps) => {
+  if (data.length === 0) return null;
   return (
     <div className="w-full border  border-black md:my-6 md:mx-auto md:w-[97%] md:rounded-md">
       <div className="flex  h-[40px] w-full items-center bg-black px-4 py-2 text-white">
