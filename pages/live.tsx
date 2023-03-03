@@ -92,7 +92,7 @@ const live = ({ data }: LiveProps) => {
               key={idx}
               className={`${
                 day.name === selectedDay && "border-2 border-orange-500"
-              } rounded-md bg-[#333] py-1 text-center text-[14px] xs:px-2`}
+              } cursor-pointer rounded-md bg-[#333] py-1 text-center text-[14px] transition hover:opacity-70 xs:px-2`}
             >
               <p>{day.name}</p>
               <p>{`${day.number}`} مهر</p>
@@ -106,7 +106,7 @@ const live = ({ data }: LiveProps) => {
               key={idx}
               className={`${
                 day.name === selectedDay && "border-2 border-orange-500"
-              } rounded-md bg-[#333] py-1 text-center text-[12px] xs:px-2 xs:text-[14px]`}
+              } cursor-pointer rounded-md bg-[#333] py-1 text-center text-[12px] transition hover:opacity-70 xs:px-2 xs:text-[14px]`}
             >
               <p>{day.name}</p>
               <p>{`${day.number}`} مهر</p>
